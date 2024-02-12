@@ -1,52 +1,62 @@
 import { TbMoneybag } from "react-icons/tb";
 import { MdOutlineStackedLineChart } from "react-icons/md";
+import { HiOutlineUsers } from "react-icons/hi2";
 import CardContainer from "../../components/Common/CardContainer";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 const Dashboard = () => {
-
 	return (
 		<>
 			<CardContainer>
-
-				<div className="flex justify-between text-center item-center gap-4 overflow-x-scroll lg:overflow-x-hidden">
-					<Link
-						to="/dashboard"
-						className="px-16 py-10 rounded bg-white transition ease-in-out hover:bg-dash-bg dark:bg-slate-700 hover:dark:bg-slate-600"
-					>
-						<div className="flex  items-center">
-							<div>
-								<TbMoneybag size={50} />
-							</div>
-							<div>
-								<p>Total Balance</p>
-								<h1 className="font-bold text-2xl">$500,000</h1>
+				<div className="flex justify-between text-center items-center gap-3 overflow-x-scroll lg:overflow-x-hidden">
+					<div className="h-52 lg:h-auto px-12 py-10 my-2 rounded bg-white transition ease-in-out hover:bg-dash-bg dark:bg-slate-700 ">
+						<div className="flex flex-1 justify-center items-center space-y-2">
+							<div className="flex justify-center items-center  rounded-full dark:bg-slate-600 shadow dark:hover:shadow-md dark:hover:bg-slate-500 h-12 w-12 transition ease-in-out">
+								<TbMoneybag size={20} />
 							</div>
 						</div>
-					</Link>
 
-					<Link
-						to="/dashboard"
-						className="px-16 py-10 transition duration-300 ease-in-out rounded bg-white  hover:bg-dash-bg  dark:bg-slate-700 hover:dark:bg-slate-600"
-					>
-						<div className="flex  items-center">
-							<div>
-								<MdOutlineStackedLineChart size={50} />
-							</div>
-							<div>
-								<p>Earnings</p>
-								<h1 className="font-bold text-2xl">$500,000</h1>
+						<div className="">
+							<p>Total Sales</p>
+							<h1 className="font-bold text-2xl">$500,000</h1>
+						</div>
+					</div>
+
+					<div className="h-52 lg:h-auto px-12 py-10 rounded bg-white transition ease-in-out hover:bg-dash-bg dark:bg-slate-700 ">
+						<div className="flex flex-1 justify-center items-center space-y-2">
+							<div className="flex justify-center items-center rounded-full dark:bg-slate-600 shadow dark:hover:shadow-md dark:hover:bg-slate-500 h-12 w-12 transition ease-in-out">
+								<MdOutlineStackedLineChart size={20} />
 							</div>
 						</div>
-					</Link>
+						<div className="w-full">
+							<p>Order Completed</p>
+							<h1 className="font-bold text-2xl">$500,000</h1>
+						</div>
+					</div>
 
-					<Link
-						to="/dashboard"
-						className="px-16 py-10 transition ease-in-out rounded shadow bg-white hover:bg-dash-bg dark:bg-slate-700 hover:dark:bg-slate-600"
-					>
-						<p>Total Balance</p>
-						<h1 className="font-bold text-2xl">$500,000</h1>
-					</Link>
+					<div className="h-52 lg:h-auto px-12 py-10 rounded bg-white transition ease-in-out hover:bg-dash-bg dark:bg-slate-700 ">
+						<div className="flex flex-1 justify-center items-center space-y-2">
+							<div className="flex justify-center items-center  rounded-full dark:bg-slate-600 shadow dark:hover:shadow-md dark:hover:bg-slate-500 h-12 w-12 transition ease-in-out">
+								<HiOutlineUsers size={20} />
+							</div>
+						</div>
+						<div>
+							<p>Customers</p>
+							<h1 className="font-bold text-2xl">$500,000</h1>
+						</div>
+					</div>
+
+					<div className="h-52 lg:h-auto px-12 py-10 rounded bg-white transition ease-in-out hover:bg-dash-bg dark:bg-slate-700 ">
+						<div className="flex flex-1 justify-center items-center space-y-2">
+							<div className="flex justify-center items-center  rounded-full dark:bg-slate-600 shadow dark:hover:shadow-md dark:hover:bg-slate-500 h-12 w-12 transition ease-in-out">
+								<HiOutlineUsers size={20} />
+							</div>
+						</div>
+						<div>
+							<p>Customers</p>
+							<h1 className="font-bold text-2xl">$500,000</h1>
+						</div>
+					</div>
 				</div>
 
 				<div className="flex justify-between items-center gap-3 lg:flex-row flex-col mx-auto">
@@ -64,6 +74,7 @@ const Dashboard = () => {
 						</div>
 					</div>
 				</div>
+<h2>footer here</h2>
 			</CardContainer>
 		</>
 	);

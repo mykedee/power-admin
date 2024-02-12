@@ -2,9 +2,7 @@ import React, { useState } from "react";
 import { AiOutlineEdit } from "react-icons/ai";
 import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
-import {
-	useUpdateUserMutation,
-} from "../../slices/userApiSlice";
+import { useUpdateUserMutation } from "../../slices/userApiSlice";
 const EditUsers = ({ user }) => {
 	// const { id } = useParams();
 	const [updateUser] = useUpdateUserMutation();
@@ -89,7 +87,7 @@ const EditUsers = ({ user }) => {
 									<div className="mb-3" controlId="exampleForm.ControlInput1">
 										<label>Username</label>
 										<input
-											className="w-full p-2 border rounded text-slate-800"
+											className="w-full p-3 border rounded text-slate-800"
 											type="text"
 											value={username}
 											onChange={(e) => setUsername(e.target.value)}
@@ -100,7 +98,7 @@ const EditUsers = ({ user }) => {
 									<div className="mb-3" controlId="exampleForm.ControlInput1">
 										<label>Email</label>
 										<input
-											className="w-full p-2 border rounded text-slate-800"
+											className="w-full p-3 border rounded text-slate-800"
 											type="text"
 											value={email}
 											onChange={(e) => setEmail(e.target.value)}
@@ -111,7 +109,7 @@ const EditUsers = ({ user }) => {
 										<label>Account Status</label>
 										<select
 											id="status"
-											className="w-full p-2 border rounded text-slate-800"
+											className="w-full p-3 border rounded text-slate-800"
 											value={active}
 											onChange={handleChange}
 										>
@@ -130,7 +128,7 @@ const EditUsers = ({ user }) => {
 										<label>Role</label>
 										<select
 											id="role"
-											className="w-full p-2 border rounded text-slate-800"
+											className="w-full p-3 border rounded text-slate-800"
 											onChange={handleRoleChange}
 										>
 											<option defaultValue>Current role is {role}</option>

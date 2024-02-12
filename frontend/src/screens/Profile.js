@@ -83,9 +83,6 @@ const Profile = () => {
 				<>
 					<div className="relative overflow-x-auto lg:overflow-x-hidden rounded-t-lg shadow-b-0 dark:bg-slate-700 bg-white">
 						<div className="w-full md:w-6/12 mx-auto p-6 space-y-6 ">
-
-
-
 							<div className="flex items-center justify-center w-full">
 								<label className="flex flex-col items-center justify-center rounded-full w-24 h-24 border-2 border-gray-300 border-dashed cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
 									<div className="relative items-center justify-center pt-5 pb-6">
@@ -98,11 +95,10 @@ const Profile = () => {
 										) : (
 											<p className="capitalize">{user.username.charAt(0)}</p>
 										)}
-									
-</div>
-								<span className="absolute inline-flex items-center justify-center top-16 border rounded-full bg-primary-orange h-4 w-4">
+									</div>
+									<span className="absolute inline-flex items-center justify-center top-16 border rounded-full bg-primary-orange h-4 w-4">
 										<AiOutlineEdit />{" "}
-									</span>	
+									</span>
 									<input
 										type="file"
 										className="hidden"
@@ -115,8 +111,6 @@ const Profile = () => {
 								<MdInfoOutline className="inline-block" size={20} />
 								<p>Edit and change your profile infomation here.</p>
 							</div>
-
-
 
 							<form
 								id="edit-modal"

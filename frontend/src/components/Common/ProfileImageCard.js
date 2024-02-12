@@ -23,7 +23,7 @@ const ProfileImageCard = ({ setShowProfileCard }) => {
 
 	return (
 		<div className="relative py-5 transition ease-in-out duration-300">
-			<div className="bg-white dark:bg-slate-700 h-68 w-72 md:w-80 mx-auto absolute top-16 md:top-10 md:right-6 rounded shadow">
+			<div className="bg-white dark:bg-slate-700 h-68 w-[98vw] md:w-80 absolute top-16 md:top-10 -right-3 md:right-6 rounded shadow">
 				<div className="flex justify-between items-center p-5 border-b">
 					<p className="mx-3">Profile</p>
 					<button className="right-0 bg-white dark:bg-primary-orange shadow rounded-full p-2 hover:shadow-md hover:transform scale(1.1)">
