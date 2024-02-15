@@ -24,7 +24,7 @@ const DashLeftBar = (props) => {
 	return (
 		<section className="relative">
 			<div className={props.cardOpen ? "cardClose" : "cardOpen"}>
-				<div className="bg-white dark:bg-slate-700 dark:shadow-xl overflow-y-scroll overflow-x-hidden shadow fixed md:w-[25vw] lg:w-[18vw] w-56 min-h-full z-40 ">
+				<div className="bg-white dark:bg-slate-700 dark:shadow-xl overflow-y-scroll overflow-x-hidden shadow fixed md:w-[25vw] lg:w-[18vw] w-5/6 min-h-full z-40 ">
 					<div className="flex justify-center items-center space-x-7 p-5">
 						<div className="mx-3">
 							<Link
