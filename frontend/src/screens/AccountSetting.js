@@ -64,7 +64,7 @@ const Profile = () => {
 							<div className="mb-4">
 								<label>Password</label>
 								<input
-									className="w-full p-2 border rounded text-slate-800"
+									className="w-full p-3 border rounded text-slate-800"
 									type="password"
 									onChange={(e) => setCurrentPassword(e.target.value)}
 									placeholder="Enter current password"
@@ -83,7 +83,7 @@ const Profile = () => {
 
 							<div className="mb-4">
 								<input
-									className="w-full p-2 border rounded text-slate-800"
+									className="w-full p-3 border rounded text-slate-800"
 									type="password"
 									onChange={(e) => setConfirmNewPassword(e.target.value)}
 									placeholder="Re-type new password"
