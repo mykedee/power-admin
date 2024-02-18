@@ -126,7 +126,7 @@ const Profile = () => {
 								<div className="mb-3">
 									<label>Username</label>
 									<input
-										className="w-full p-2 border rounded text-slate-800"
+										className="w-full p-3 border rounded text-slate-800"
 										type="text"
 										value={username}
 										onChange={(e) => setUsername(e.target.value)}
@@ -138,7 +138,7 @@ const Profile = () => {
 									<label>Email</label>
 
 									<input
-										className="w-full p-2 border rounded text-slate-800"
+										className="w-full p-3 border rounded text-slate-800"
 										type="text"
 										value={email}
 										onChange={(e) => setEmail(e.target.value)}
