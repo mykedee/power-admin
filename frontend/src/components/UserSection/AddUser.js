@@ -88,7 +88,7 @@ const AddUser = () => {
 										<label>Email</label>
 
 										<input
-											className="w-full p-2 border rounded text-slate-800"
+											className="w-full p-3 border rounded text-slate-800"
 											type="text"
 											value={email}
 											onChange={(e) => setEmail(e.target.value)}
@@ -99,7 +99,7 @@ const AddUser = () => {
 									<div className="mb-3">
 										<label>Password</label>
 										<input
-											className="w-full p-2 border rounded text-slate-800"
+											className="w-full p-3 border rounded text-slate-800"
 											type="text"
 											value={password}
 											onChange={(e) => setPassword(e.target.value)}
@@ -112,7 +112,7 @@ const AddUser = () => {
 									
 										<select
 											id="role"
-											className="w-full p-2 border rounded text-slate-800"
+											className="w-full p-3 border rounded text-slate-800"
 											value={role}
 											onChange={handleChange}
 										>
