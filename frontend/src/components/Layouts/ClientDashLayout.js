@@ -4,6 +4,7 @@ import { Outlet, Navigate } from "react-router-dom";
 import ClientSideBar from "../../components/NavBar/ClientSideBar";
 import TopCard from "../NavBar/TopCard";
 import { toggler } from "../../slices/globalSlice";
+import Footer from '../Footer/Footer';
 
 const ClientDashLayout = () => {
 	const dispatch = useDispatch();
@@ -26,10 +27,11 @@ const ClientDashLayout = () => {
 	return userInfo &&
 		userInfo.user.role === "user" &&
 		userInfo.user.active === true ? (
-		<div
-			className={`flex md:overflow-x-hidden overflow-x-auto min-h-[100vh] relative ${
+<div className={`${
 				darkMode ? "dark" : "bg-dash-bg"
-			} `}
+			}`}>
+		<div
+			className="flex md:overflow-x-hidden overflow-x-auto min-h-[100vh] relative"
 		>
 			<ClientSideBar
 				handleClick={handleClick}
@@ -47,6 +49,9 @@ const ClientDashLayout = () => {
 
 			<Outlet />
 		</div>
+			<Footer/>
+
+</div>
 	) : userInfo &&
 	  userInfo.user.role === "user" &&
 	  userInfo.user.active === false ? (

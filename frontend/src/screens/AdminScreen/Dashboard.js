@@ -74,7 +74,6 @@ const Dashboard = () => {
 						</div>
 					</div>
 				</div>
-<h2>footer here</h2>
 			</CardContainer>
 		</>
 	);
