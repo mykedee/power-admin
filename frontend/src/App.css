@@ -297,11 +297,13 @@ a:hover {
 }
 
 .cardOpen {
+	/* @apply hidden relative; */
 	@apply block relative;
+
 }
 
 .cardClose {
-	@apply hidden md:block relative;
+	@apply hidden lg:block relative;
 }
 
 @media (min-width: 768px) {

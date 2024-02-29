@@ -24,9 +24,9 @@ const DashLeftBar = (props) => {
 	return (
 		<section className="relative">
 			<div className={props.cardOpen ? "cardClose" : "cardOpen"}>
-				<div className="bg-white dark:bg-slate-700 dark:shadow-xl overflow-y-scroll overflow-x-hidden shadow fixed md:w-[25vw] lg:w-[18vw] w-5/6 min-h-full z-40 ">
-					<div className="flex justify-center items-center space-x-7 p-5">
-						<div className="mx-3">
+				<div className="bg-white dark:bg-slate-700 dark:shadow-xl overflow-y-scroll overflow-x-hidden shadow fixed md:w-[28vw] lg:w-[18vw] w-5/6 min-h-full z-40 ">
+					<div className="flex justify-between items-center space-x-7 p-5">
+						<div className="justify-start mx-3">
 							<Link
 								to="/dashboard"
 								className="bg-transparent dark:bg-transparent hover:bg-transparent dark:hover:bg-transparent"
@@ -40,8 +40,8 @@ const DashLeftBar = (props) => {
 							className="mx-5 text-white justify-end"
 							onClick={props.handleClick}
 						>
-							<h1 className="md:hidden" id={"dark-white"}>
-								<GrClose />
+							<h1 className="lg:hidden dark:fill-zinc-50" id={"dark-white"} >
+								<GrClose className="dark:fill-zinc-50" />
 							</h1>
 						</div>
 						<div

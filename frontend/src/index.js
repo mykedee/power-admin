@@ -26,7 +26,6 @@ import Profile from "./screens/Profile";
 import AccountSetting from "./screens/AccountSetting";
 
 import Register from "./screens/Register";
-import Careers from "./screens/Careers";
 import AdminRoute from "./components/Layouts/AdminRoute";
 import VerifyEmail from "./screens/VerifyEmail";
 import ClientDashLayout from "./components/Layouts/ClientDashLayout";
@@ -38,7 +37,7 @@ const router = createBrowserRouter(
 				<Route index={true} path="/login" element={<Login />} />
 				<Route path="/blogs" element={<BlogScreen />} />
 				<Route path="/blogs/:id" element={<BlogDetailsScreen />} />
-				<Route path="/careers" element={<Careers />} />
+		
 			</Route>
 			<Route path="/register" element={<Register />} />
 			<Route path="/verify" element={<VerifyEmail />} />

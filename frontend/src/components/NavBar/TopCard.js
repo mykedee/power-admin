@@ -74,7 +74,7 @@ const TopCard = (props) => {
 						<div
 							className="bg-green-700 dark:bg-primary-orange border-solid border-4 hover:border-dash-bg w-10 h-10 rounded-full cursor-pointer"
 							onClick={openProfileCard}
-						><img className='flex-1  flex w-10 h-10 item-center justify-center rounded-full' src={userInfo.user.photo}/></div>
+						><img className='flex-1  flex item-center justify-center rounded-full' src={userInfo.user.photo}/></div>
 					) : (
 						<span
 							className="flex items-center flex-1 justify-center bg-green-700 text-white dark:bg-primary-orange border-solid border-4 hover:border-dash-bg w-10 h-10 rounded-full cursor-pointer"

@@ -132,7 +132,7 @@ const Login = () => {
 					</form>
 
 					<p className="text-center mt-4 p-2 text-sm text-slate-700">
-						Don't have an account?
+						Don't have an account? {" "}
 						<Link to="/register">
 							<span className="text-base font-semibold hover:text-primary-green text-slate-500">
 								Sign up
