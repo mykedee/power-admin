@@ -190,7 +190,7 @@ exports.verifyUser = async (req, res) => {
 				success: false,
 				message: "Invalid Credentials",
 			});
-		} else if (user.emailTokenExpires > Date.now()) {
+		} else if (user.emailTokenExpires > Date.now() 15 * 60 * 1000 ) {
 			return res.status(400).json({
 				success: false,
 				message:
