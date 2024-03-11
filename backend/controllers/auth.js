@@ -186,8 +186,8 @@ exports.verifyUser = async (req, res) => {
 			//emailTokenExpires
 			//emailTokenExpires: { $gte: Date.now() },
 		});
-		const currentTime = Date.now();
-                let codeTime = user.emailTokenExpires;
+		const currentTime = new Date();
+                let codeTime = new Date(user.emailTokenExpires);
                 const elapsedTime = currentTime - codeTime; 
 		
 
