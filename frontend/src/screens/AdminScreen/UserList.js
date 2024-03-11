@@ -27,7 +27,7 @@ const Users = () => {
 	const buttonLabel = "Yes, Delete";
 
 const dateFormat = (date) => {
-      return moment(date).utcOffset(0).format("  MMMM DD YYYY (hh:mm:ss a)");
+      return moment.utc(date).format("  MMMM DD YYYY (hh:mm:ss a)");
     }
 
 	const handleSubmit = async (id) => {
