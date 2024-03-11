@@ -188,15 +188,15 @@ exports.verifyUser = async (req, res) => {
 		});
 		const currentTime = new Date();
                 let codeTime = new Date(user.emailTokenExpires);
-                const elapsedTime = currentTime - codeTime; 
+                const elapsedTime = currentTime - codeTime; 		
+                const fifteenMinutesInMillis = 15 * 60 * 1000; 
 		
-
 		if (!user) {
 			return res.status(400).json({
 				success: false,
 				message: "Invalid Credentials",
 			});
-		} else if (codeTime > elapsedTime) {
+		} else if (elapsedTime > fifteenMinutesInMillis) {
 			return res.status(400).json({
 				success: false,
 				message:
