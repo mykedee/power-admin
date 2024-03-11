@@ -187,8 +187,8 @@ exports.verifyUser = async (req, res) => {
 			//emailTokenExpires: { $gte: Date.now() },
 		});
 		const currentTime = Date.now();
-        const codeTime = user.emailTokenExpires;
-        const elapsedTime = currentTime - codeTime; 
+                let codeTime = user.emailTokenExpires;
+                const elapsedTime = currentTime - codeTime; 
 		
 
 		if (!user) {
@@ -196,7 +196,7 @@ exports.verifyUser = async (req, res) => {
 				success: false,
 				message: "Invalid Credentials",
 			});
-		} else if (user.emailTokenExpires > elapsedTime) {
+		} else if (codeTime > elapsedTime) {
 			return res.status(400).json({
 				success: false,
 				message:
