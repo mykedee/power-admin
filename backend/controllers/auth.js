@@ -183,7 +183,8 @@ exports.verifyUser = async (req, res) => {
 		let emailToken = crypto.createHash("sha256").update(code).digest("hex");
 		const user = await User.findOne({
 			emailToken,
-			emailTokenExpires: { $gte: Date.now() },
+			//emailTokenExpires
+			//emailTokenExpires: { $gte: Date.now() },
 		});
 		const currentTime = Date.now();
         const codeTime = user.emailTokenExpires;
