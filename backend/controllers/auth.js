@@ -172,7 +172,8 @@ exports.resetPassword = async (req, res) => {
 exports.verifyUser = async (req, res) => {
 	try {
 		let { code } = req.body;
-		if (!code) {
+		
+        if (!code) {
 			return res.status(400).json({
 				success: false,
 				message: "Please enter your OTP",
@@ -184,13 +185,17 @@ exports.verifyUser = async (req, res) => {
 			emailToken,
 			emailTokenExpires: { $gte: Date.now() },
 		});
+		const currentTime = new Date();
+        const codeTime = new Date(user.emailTokenExpires);
+        const elapsedTime = currentTime - codeTime; 
+		
 
 		if (!user) {
 			return res.status(400).json({
 				success: false,
 				message: "Invalid Credentials",
 			});
-		} else if (user.emailTokenExpires > Date.now() ) {
+		} else if (user.emailTokenExpires > elapsedTime) {
 			return res.status(400).json({
 				success: false,
 				message:
