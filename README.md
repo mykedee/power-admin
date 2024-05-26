@@ -22,6 +22,8 @@ Sign up
   <br>
 Email Verification 
   <br>
+  Forgot Password Email Link
+  <br>
 Login
   <br>
 Logout
