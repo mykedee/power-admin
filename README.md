@@ -22,6 +22,8 @@ Email Verification
 Profile Updates 
   <br>
   Account Settings
+    <br>
+Logout
 <br><br>
   <b>▫️Pages</b>
   <br>
@@ -29,7 +31,7 @@ Sign up
   <br>
 Login
   <br>
-Logout
+Dashboard
   <br>
   <br>
   <b>▫️Others</b>
