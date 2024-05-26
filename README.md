@@ -10,6 +10,13 @@ Live url: https://powerapp-ikut.onrender.com/
 User Update (Create | Read | Update | Delete)
   <br>
   <br>
+  <b>▫️Miscellaneous</b>
+  <br>
+Email Verification 
+  <br>
+  Forgot Password Email Link
+  <br>
+  
 <b>▫️Client Panel</b>
   <br>
 Profile Updates 
@@ -19,10 +26,6 @@ Profile Updates
   <b>▫️Pages</b>
   <br>
 Sign up
-  <br>
-Email Verification 
-  <br>
-  Forgot Password Email Link
   <br>
 Login
   <br>
