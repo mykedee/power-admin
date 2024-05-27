@@ -1,6 +1,3 @@
-// export const BASE_URL =
-// 	process.env.NODE_ENV === "development" ? "http://localhost:4444" : "";
-
 export const BASE_URL = "";
 export const BLOG_URL = "/api/v1/posts";
 export const LOGIN_URL = "/api/v1/auth/signin";
@@ -12,7 +9,5 @@ export const UPDATE_PASSWORD_URL = "/api/v1/auth/updatepassword";
 export const UPDATE_USERDETAILS_URL = "/api/v1/auth/updatedetails";
 export const UPDATE_USERPHOTO_URL = "/api/v1/auth/updatephoto";
 export const SIGNUP_URL = "/api/v1/auth/signup";
-
-// export const USERS_URL = "/api/users";
-// export const ORDERS_URL = "/api/orders";
-// export const PAYPAL_URL = "/api/config/paypal";
+export const RESENT_VERIFICATION_URL = "/api/v1/auth/resend-verification";
+export const FORGOT_PASSWORD_URL = "/api/v1/auth/forgotpassword";

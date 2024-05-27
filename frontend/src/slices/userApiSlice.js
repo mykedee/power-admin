@@ -9,6 +9,8 @@ import {
   UPDATE_PASSWORD_URL,
   UPDATE_USERDETAILS_URL,
   UPDATE_USERPHOTO_URL,
+  RESENT_VERIFICATION_URL,
+  FORGOT_PASSWORD_URL,
 } from "../constants";
 
 const userApiSlice = apiSlice.injectEndpoints({
@@ -41,6 +43,7 @@ const userApiSlice = apiSlice.injectEndpoints({
       providesTags: ["User"],
       keepUnusedDataFor: 5,
     }),
+
     updatePassword: builder.mutation({
       query(body) {
         return {
@@ -51,6 +54,7 @@ const userApiSlice = apiSlice.injectEndpoints({
       },
       invalidatesTags: ["User"],
     }),
+
     updateUser: builder.mutation({
       query: ({ id, updatedUser }) => ({
         url: `${USERS_URL}/${id}`,
@@ -68,6 +72,7 @@ const userApiSlice = apiSlice.injectEndpoints({
       }),
       invalidatesTags: ["User"],
     }),
+
     updateUserPhoto: builder.mutation({
       query: (updatePhoto) => ({
         url: `${UPDATE_USERPHOTO_URL}`,
@@ -79,6 +84,7 @@ const userApiSlice = apiSlice.injectEndpoints({
     deleteUser: builder.mutation({
       query: (Id) => ({ url: `${USERS_URL}/${Id}`, method: "DELETE" }),
     }),
+
     login: builder.mutation({
       query(body) {
         return {
@@ -89,6 +95,7 @@ const userApiSlice = apiSlice.injectEndpoints({
       },
       invalidatesTags: ["Login"],
     }),
+
     signup: builder.mutation({
       query(body) {
         return {
@@ -104,6 +111,25 @@ const userApiSlice = apiSlice.injectEndpoints({
       query(body) {
         return {
           url: `${VERIFY_URL}`,
+          method: "PATCH",
+          body,
+        };
+      },
+      invalidatesTags: ["Login"],
+    }),
+    forgotPassword: builder.mutation({
+      query(body) {
+        return {
+          url: `${FORGOT_PASSWORD_URL}`,
+          method: "POST",
+          body,
+        };
+      },
+    }),
+    resendVerification: builder.mutation({
+      query(body) {
+        return {
+          url: `${RESENT_VERIFICATION_URL}`,
           method: "PATCH",
           body,
         };
@@ -136,4 +162,6 @@ export const {
   useUpdatePasswordMutation,
   useDeleteUserMutation,
   useVerifyUserMutation,
+  useResendVerificationMutation,
+  useForgotPasswordMutation,
 } = userApiSlice;
