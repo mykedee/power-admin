@@ -159,6 +159,7 @@ exports.resetPassword = async (req, res) => {
 // @api: /api/v1/auth/verify
  *****/
 exports.verifyUser = async (req, res) => {
+<<<<<<< HEAD
   try {
     let { code } = req.body;
     if (!code) {
@@ -179,6 +180,48 @@ exports.verifyUser = async (req, res) => {
         message: "Invalid verification code",
       });
     }
+=======
+	try {
+		let { code } = req.body;
+		
+        if (!code) {
+			return res.status(400).json({
+				success: false,
+				message: "Please enter your OTP",
+			});
+		}
+
+		let emailToken = crypto.createHash("sha256").update(code).digest("hex");
+		const user = await User.findOne({
+			emailToken,
+			//emailTokenExpires
+			//emailTokenExpires: { $gte: Date.now() },
+		});
+		const currentTime = new Date();
+                let codeTime = new Date(user.emailTokenExpires);
+                const elapsedTime = currentTime - codeTime; 		
+                const fifteenMinutesInMillis = 15 * 60 * 1000; 
+		
+		if (!user) {
+			return res.status(400).json({
+				success: false,
+				message: "Invalid Credentials",
+			});
+		} else if (elapsedTime > fifteenMinutesInMillis) {
+			return res.status(400).json({
+				success: false,
+				message:
+					"Verification token is expires..Please visit http://verify.com",
+			});
+		} else {
+			if (user.active) {
+				return res.status(400).json({
+					success: false,
+					message: "Account already activated",
+				});
+			}
+		}
+>>>>>>> 609c135ed6016a765d0b6169ccc4c3cda3e00595
 
     let timeDiff = Date.now() - user.emailTokenExpires;
     const durationMinutes = 15 * 60 * 1000;
