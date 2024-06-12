@@ -55,7 +55,3 @@ mongoose
 const PORT = process.env.PORT || 4444;
 
 app.listen(PORT, () => console.log(`app runing on ${PORT}`));
-
-// lakes99
-
-// Jl9Aoob7yOBT8a24
