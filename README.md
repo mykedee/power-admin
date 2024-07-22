@@ -2,7 +2,7 @@
 <p>Fully responsive fullstack admin/client application built using MERN (Mongodb, Express, React (redux, redux-toolkit), Nodejs) and Tailwind CSS technologies.</p>
 <p>This is a mere side project that'll get updated from time to time as time permits </p>
 <p>Fork, modify and use as you want 😊 </p>
-Live url: https://powerapp-ikut.onrender.com/
+<p>Live url: https://powerapp-ikut.onrender.com/</p>
 <br>
 ![power-admin-dashboard-page1](https://github.com/user-attachments/assets/8c43031a-625f-4879-bc94-0dfa154e272b)
 ![power-admin-signup-page](https://github.com/user-attachments/assets/42d67abb-32a6-4edc-bb10-a5967b2e5bf1)
