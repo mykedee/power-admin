@@ -9,7 +9,7 @@ Live url: https://powerapp-ikut.onrender.com/
 <p>
   <b>▫️Admin Panel</b>
   <br>
-[![App Platorm](https://doimages.nyc3.cdn.digitaloceanspaces.com/002Blog/0-BLOG-BANNERS/app_platform.png)](https://www.digitalocean.com/products/app-platform)
+[![Admin Dashboard](https://olalekan-mikke.netlify.app/images/power-admin-dashboard-page1.png)
   <br>
 User Update (Create | Read | Update | Delete)
   <br>
