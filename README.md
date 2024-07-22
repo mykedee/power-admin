@@ -8,7 +8,7 @@ Live url: https://powerapp-ikut.onrender.com/
 ### Available features
 <p>
   <b>▫️Admin Panel</b>
-![Admin Dashboard](https://drive.google.com/thumbnail?id=1tA7l9gB0_Fr_CF7l9j4AxbXuVq8ksPkY)
+![Admin Dashboard](https://drive.google.com/file/d/1tgrdOE_hnMIVpZhlcWFvg2rSSjgU24Jt/view?usp=drive_link)
   <br>
 User Update (Create | Read | Update | Delete)
   <br>
