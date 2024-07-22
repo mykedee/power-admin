@@ -8,6 +8,7 @@ Live url: https://powerapp-ikut.onrender.com/
 ### Available features
 <p>
   <b>▫️Admin Panel</b>
+  <br>
 [![App Platorm](https://doimages.nyc3.cdn.digitaloceanspaces.com/002Blog/0-BLOG-BANNERS/app_platform.png)](https://www.digitalocean.com/products/app-platform)
   <br>
 User Update (Create | Read | Update | Delete)
