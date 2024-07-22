@@ -12,7 +12,9 @@ Live url: https://powerapp-ikut.onrender.com/
   <br>
   ![code8](https://user-images.githubusercontent.com/96818824/206644347-55ec30ef-bae5-4608-a6a7-9966e1c29833.png)
     <br>
+    <p>
 User Update (Create | Read | Update | Delete)
+    </p>
   <br>
   <br>
   <b>▫️Miscellaneous</b>
