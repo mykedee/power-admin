@@ -8,6 +8,7 @@ Live url: https://powerapp-ikut.onrender.com/
 ### Available features
 <p>
   <b>▫️Admin Panel</b>
+</p>
   <br>
   ![code8](https://user-images.githubusercontent.com/96818824/206644347-55ec30ef-bae5-4608-a6a7-9966e1c29833.png)
     <br>
@@ -43,4 +44,4 @@ Dashboard
 Pagination 
   <br>
 Light/Dark mode
-</p>
+
