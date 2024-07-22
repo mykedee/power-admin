@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
-import { toast } from "react-toastify";gi
+import { toast } from "react-toastify";
 import { useAddPostMutation } from "../../slices/blogApiSlice";
 
 const AddBlog = () => {
