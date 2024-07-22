@@ -10,7 +10,7 @@ Live url: https://powerapp-ikut.onrender.com/
   <b>▫️Admin Panel</b>
 </p>
   <br>
-  ![code8](https://user-images.githubusercontent.com/96818824/206644347-55ec30ef-bae5-4608-a6a7-9966e1c29833.png)
+  ![code8](https://olalekan-mikke.netlify.app/images/power-admin-dashboard-page1.png)
     <br>
     <p>
 User Update (Create | Read | Update | Delete)
@@ -23,7 +23,6 @@ Email Verification
   <br>
   Forgot Password Email Link
   <br>
-  
 <b>▫️Client Panel</b>
   <br>
 Profile Updates 
