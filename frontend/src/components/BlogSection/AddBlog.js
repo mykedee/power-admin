@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
-import { toast } from "react-toastify";
+import { toast } from "react-toastify";gi
 import { useAddPostMutation } from "../../slices/blogApiSlice";
 
-const AddBlog = (props) => {
+const AddBlog = () => {
 	const [title, setTitle] = useState("");
 	const [body, setBody] = useState("");
 	const [createPost] = useAddPostMutation();
