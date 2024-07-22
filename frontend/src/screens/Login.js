@@ -91,8 +91,8 @@ const Login = () => {
                 </div>
                 <div>
                   <h2 className="font-bold">Client Test Login Detail</h2>
-                  <p className="my-1">Email: admin@me.com</p>
-                  <p>Password: 123456</p>
+                  <p className="my-1">Email: client@me.com</p>
+                  <p>Password: 111111</p>
                 </div>
               </div>
             </div>

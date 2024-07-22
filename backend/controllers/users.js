@@ -5,8 +5,7 @@ const User = require("../models/userModel");
 // getAllUsers
 // getUsers /api/v1/auth/users
 // private/admin
-exports.getUsers = async (req, res) => {
-  try {
+exports.getUsers = asyncHandler(async (req, res) => {
     const pageSize = process.env.PAGE_SIZE;
     const page = Number(req.query.page) || 1;
     const count = await User.countDocuments();
@@ -21,12 +20,7 @@ exports.getUsers = async (req, res) => {
       pageSize,
       count,
     });
-  } catch (error) {
-    res.status(400).json({
-      error: error.message,
-    });
-  }
-};
+  });
 
 // getUser
 // getUser /api/v1/auth/users/:id
