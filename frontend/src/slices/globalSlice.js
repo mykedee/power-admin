@@ -10,25 +10,8 @@ const globalSlice = createSlice({
 	initialState,
 	reducers: {
 		toggler: (state) => {
-			// const dark = action.payload;
 			state.darkMode = !state.darkMode;
 			localStorage.setItem("darkMode", state.darkMode);
-
-			// localStorage.setItem("darkMode", darkMode);
-
-			// console.log("true");
-			// } else {
-			// 	state.darkMode = state.darkMode === "false";
-			// 	console.log("false");
-			// }
-
-			// if (!dark) {
-			// 	localStorage.setItem("darkMode", dark);
-			// 	// setDarkMode(true);
-			// } else {
-			// 	state.darkMode = [...state.darkMode];
-
-			// }
 		},
 	},
 });

@@ -33,10 +33,6 @@ const ProfileImageCard = ({ setShowProfileCard }) => {
 					</button>
 				</div>
 				<div className="p-5">
-					<p className="py-4 mx-3">
-						Velit culpa cupidatat amet et sint. Incididunt dolore aliquip
-						laborum mollit eiusmod aute occaecat veniam.
-					</p>
 					<div className="block">
 						<Link className="flex items-center my-2  text-slate-800 hover:text-white hover:bg-primary-green dark:hover:bg-primary-orange dark:text-white rounded">
 							<span className="py-4 mx-3">

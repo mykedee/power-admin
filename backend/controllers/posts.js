@@ -1,73 +1,12 @@
+const ErrorResponse = require("../utils/errorResponse");
+const asyncHandler = require("../middleware/asyncHandler");
 const Post = require("../models/postModel");
-
-// getAllPosts
-// getUsers /api/v1/posts
-// public
-exports.getPosts = async (req, res) => {
-  try {
-    const pageSize = 5;
-    const page = Number(req.query.pageNumber) || 1;
-    const count = await Post.count({});
-    let posts = await Post.find({})
-      .populate("postedBy", "username createdAt")
-      .limit(pageSize)
-      .skip(pageSize * (page - 1));
-    res.status(200).json({
-      posts,
-      count,
-      pageSize,
-      page,
-    });
-  } catch (error) {
-    res.status(400).json({ error: error.message });
-  }
-};
-
-// exports.getPosts = async (req, res) => {
-// 	try {
-// 		const pageSize = 5;
-// 		const page = Number(req.query.pageNumber) || 1;
-// 		const count = await Post.count({});
-// 		let posts = await Post.find()
-// 			.populate("postedBy", "username createdAt")
-// 			.limit(pageSize)
-// 			.skip(pageSize * (page - 1));
-// 		res.status(200).json({
-// 			posts,
-// 			page,
-// 			pages: Math.ceil(count / pageSize),
-// 		});
-// 	} catch (error) {
-// 		res.status(400).json({
-// 			error: error.message,
-// 		});
-// 	}
-// };
-
-// getUser
-// getUser /api/v1/auth/users/:id
-//private/admin
-exports.getPost = async (req, res) => {
-  try {
-    let post = await Post.findById(req.params.id);
-    // .populate(
-    // 			"postedBy",
-    // 			"username"
-    // 		);
-    res.status(200).json(post);
-  } catch (error) {
-    res.status(400).json({
-      error: error.message,
-    });
-  }
-};
 
 // createPost
 // getUser /api/v1/posts
 //private/admin
-exports.createPost = async (req, res) => {
-  try {
-    let { title, body, postedBy } = req.body;
+exports.createPost = asyncHandler(async(req, res, next) => {
+    let { title, body } = req.body;
 
     let photos = [];
     if (req.files.length > 0) {
@@ -75,15 +14,13 @@ exports.createPost = async (req, res) => {
         return { img: file.filename };
       });
     } else {
-      return res.status(400).json({
-        message: "Post image is required",
-      });
+       return next(new ErrorResponse("Post image is required}", 400))
     }
 
     if (!title || !body) {
-      return res.status(400).json({
-        message: "All fields is required",
-      });
+             return next(
+               new ErrorResponse("All fields is required", 400)
+             );
     }
     let post = await Post.create({
       photos,
@@ -94,30 +31,52 @@ exports.createPost = async (req, res) => {
     res.status(201).json({
       post,
     });
-  } catch (error) {
-    res.status(400).json({
-      error: error.message,
+})
+
+// getAllPosts
+// getUsers /api/v1/posts
+// public
+exports.getPosts = asyncHandler(async(req, res) => {
+    const pageSize = process.env.PAGE_SIZE;
+    const page = Number(req.query.pageNumber) || 1;
+    const count = await Post.count({});
+    let posts = await Post.find({})
+      .populate("postedBy category", "username createdAt")
+      .limit(pageSize)
+      .skip(pageSize * (page - 1));
+    res.status(200).json({
+      posts,
+      count,
+      pageSize,
+      page,
     });
-  }
-};
+});
+
+// getUser
+// getUser /api/v1/posts/:id
+//private/admin
+exports.getPost = asyncHandler(async(req, res) => {
+    let post = await Post.findById(req.params.id);
+    res.status(200).json(post);
+});
+
+
 
 // updateUser
-// getUser /api/v1/auth/users/:id
+// getUser /api/v1/posts/:id
 //private/admin
-exports.updatePost = async (req, res) => {
-  try {
+exports.updatePost = asyncHandler(async(req, res, next) => {
     let post = await Post.findById(req.params.id);
-
     if (!post) {
-      return res.status(400).json({
-        message: "Post not found",
-      });
+      return next(
+        new ErrorResponse(`Post not found with id of ${req.params.id}`, 404)
+      );
     }
 
     if (post.postedBy.toString() !== req.user.id && req.user.role !== "admin") {
-      return res.status(400).json({
-        message: "Not authorised to perform this action",
-      });
+    return next(
+      new ErrorResponse("Not authorised to perform this action", 400)
+    )
     }
 
     post = await Post.findByIdAndUpdate(req.params.id, req.body, {
@@ -128,32 +87,20 @@ exports.updatePost = async (req, res) => {
     res.status(200).json({
       message: "Post updated successfully",
     });
-  } catch (error) {
-    res.status(400).json({
-      error: error.message,
-    });
-  }
-};
+})
 
 // getUser
-// getUser /api/v1/auth/users/:id
+// getUser /api/v1/posts/:id
 //private/admin
-exports.deletePost = async (req, res) => {
-  try {
+exports.deletePost = asyncHandler(async(req, res, next) => {
     let post = await Post.findById(req.params.id);
 
     if (post.postedBy.toString() !== req.user.id && req.user.role !== "admin")
-      return res.status(401).json({
-        message: " Not authorized to perform this action",
-      });
+
+     return next(new ErrorResponse("Not authorised to perform this action", 401));
 
     post = await Post.findByIdAndDelete(req.params.id);
     res.status(200).json({
       message: " Post deleted successfully",
     });
-  } catch (error) {
-    res.status(400).json({
-      error: error.message,
-    });
-  }
-};
+})

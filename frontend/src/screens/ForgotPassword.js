@@ -16,13 +16,13 @@ const ForgotPassword = () => {
         toast.success("Reset password link successfully sent to your email");
       }
     } catch (error) {
-      toast.error(error?.data?.message || error.error);
+      toast.error(error?.data?.error);
     }
   };
   return (
     <div className="my-20">
       <div className="flex items-center justify-center flex-1">
-        <Link to="/">
+        <Link to="/login">
           <img src="../images/logo-green.png" alt="" className="w-20 h-20 " />
         </Link>
       </div>

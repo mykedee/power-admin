@@ -11,3 +11,4 @@ export const UPDATE_USERPHOTO_URL = "/api/v1/auth/updatephoto";
 export const SIGNUP_URL = "/api/v1/auth/signup";
 export const RESENT_VERIFICATION_URL = "/api/v1/auth/resend-verification";
 export const FORGOT_PASSWORD_URL = "/api/v1/auth/forgotpassword";
+export const RESET_PASSWORD_URL = "/api/v1/resetpassword";

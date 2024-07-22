@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate, useLocation } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { setCredentials } from "../slices/authSlice";
 import { toast } from "react-toastify";
 
@@ -20,21 +20,20 @@ const VerifyEmail = () => {
   const [verify, { isLoading }] = useVerifyUserMutation();
   const [resendverify] = useResendVerificationMutation();
 
-  function anonymizeEmail(useremail) {
+  function hideEmail(useremail) {
     const [localPart, domain] = useremail.split("@");
     if (localPart.length > 2) {
-      const anonymizedLocalPart =
+      const hideLocalPart =
         localPart[0] +
         "*".repeat(localPart.length - 2) +
         localPart[localPart.length - 1];
-      return anonymizedLocalPart + "@" + domain;
+      return hideLocalPart + "@" + domain;
     }
     return useremail[0] + "*".repeat(localPart.length - 1) + "@" + domain;
   }
 
   const useremail = userInfo.user.email;
-  const anonymizedEmail = anonymizeEmail(useremail);
-  //   console.log(anonymizedEmail); // e***@gmail.com
+  const hiddenEmail = hideEmail(useremail);
 
   useEffect(() => {
     if (userInfo && userInfo.user.active === true) {
@@ -75,25 +74,14 @@ const VerifyEmail = () => {
         timerToString();
         setTime(20);
       } else if (res.success === false) {
-        toast.error(res.data.message);
+       return toast.error(res.data.message);
       } else {
-        toast.error(res.error.data.message);
+       return toast.error(res.error.data.message);
       }
     } catch (error) {
       console.log(error);
     }
   };
-  // useEffect(() => {
-  // 	if (userInfo && userInfo.user.active === true) {
-  // 		navigate("/dashboard");
-  // 	} else {
-  // 		if (userInfo && userInfo.user.active === false) {
-  // 			navigate("/verify");
-  // 		} else {
-  // 			navigate("/login");
-  // 		}
-  // 	}
-  // }, [userInfo, navigate]);
 
   const timerToString = () => {
     let minutes = ("0" + Math.floor(time / 60)).slice(-2);
@@ -118,7 +106,7 @@ const VerifyEmail = () => {
       <div className="md:flex flex-1 items-center justify-center md:w-7/12 bg-primary-green hidden">
         <p className="text-3xl text-center text-white">
           <Link to="/" className="flex justify-center my-4">
-            <img src="../images/logo-white.png" className="w-28 h-28 " />
+            <img src="../images/logo-white.png" alt="logo" className="w-28 h-28 " />
           </Link>{" "}
         </p>
       </div>
@@ -126,7 +114,7 @@ const VerifyEmail = () => {
       <div className="bg-card-light md:w-5/12 lg:mx-auto w-full">
         <div className="w-11/12 md:w-9/12 mx-auto my-20">
           <Link to="/" className="md:hidden flex justify-center my-4">
-            <img src="../images/logo-green.png" className="w-20 h-20 " />
+            <img src="../images/logo-green.png" alt="logo" className="w-20 h-20 " />
           </Link>{" "}
           <div className="my-3">
             <h3 className="text-left md:mx-5 md:text-4xl text-2xl mx-3 font-bold mb-4">
@@ -136,9 +124,9 @@ const VerifyEmail = () => {
           <form className="md:mx-3 mb-6" onSubmit={handleSubmit}>
             <div className="mx-3 mb-1">
               <label className="block text-sm mb-3">Enter OTP Code</label>
-              <div className="relative flex items-center justify-between ring-gray-300 border-slate-200 rounded w-full outline outline-1 outline-offset-2 focus:border-0 focus:outline focus:outline-1 focus:outline-offset-2">
+              <div className="relative flex items-center justify-between">
                 <input
-                  className="w-11/12 p-2 outline-none"
+                  className="w-full p-3 text-sm font-medium text-slate-600 rounded-lg border border-gray-300 ring-1 ring-gray-300 focus:ring-1 focus:ring-inset focus:ring-green-700 focus:outline-none bg-transparent"
                   type="text"
                   value={code}
                   onChange={(e) => setCode(e.target.value)}
@@ -149,7 +137,7 @@ const VerifyEmail = () => {
 
             {userInfo && (
               <p className="text-left p-3 text-sm">
-                Enter the 4-digit verification code sent to {anonymizedEmail}
+                Enter the 4-digit verification code sent to {hiddenEmail}
               </p>
             )}
 

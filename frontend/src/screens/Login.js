@@ -4,7 +4,6 @@ import { Link, useNavigate } from "react-router-dom";
 import { setCredentials } from "../slices/authSlice";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { toast } from "react-toastify";
-
 import { useLoginMutation } from "../slices/userApiSlice";
 import Loader from "../components/Loader/Loader";
 
@@ -14,7 +13,6 @@ const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [passwordType, setPasswordType] = useState("password");
-
   const { userInfo } = useSelector((state) => state.auth);
   const [login, { isLoading }] = useLoginMutation();
 
@@ -44,7 +42,7 @@ const Login = () => {
         dispatch(setCredentials({ ...res }));
       }
     } catch (error) {
-      toast.error(error?.data?.message || error.error);
+      toast.error(error.data.error);
     }
   };
 
@@ -59,15 +57,23 @@ const Login = () => {
   return (
     <div className="flex w-full h-screen">
       <div className="md:flex flex-1 items-center justify-center md:w-7/12 bg-primary-green hidden">
-        <Link to="/" className="justify-center">
-          <img src="../images/logo-white.png" className="w-28 h-28 " />
+        <Link to="/login" className="justify-center">
+          <img
+            src="../images/logo-white.png"
+            alt="logo"
+            className="w-28 h-28 "
+          />
         </Link>
       </div>
 
       <div className="bg-card-light md:w-5/12 lg:mx-auto w-full">
         <div className="w-11/12 md:w-9/12 mx-auto my-20">
-          <Link to="/" className="md:hidden flex justify-center my-4">
-            <img src="../images/logo-green.png" className="w-20 h-20 " />
+          <Link to="/login" className="md:hidden flex justify-center my-4">
+            <img
+              src="../images/logo-green.png"
+              alt="logo"
+              className="w-20 h-20 "
+            />
           </Link>
           <div className="my-3">
             <h3 className="text-left md:mx-5 md:text-4xl text-2xl mx-3 font-bold mb-4 text-slate-700">
@@ -76,6 +82,20 @@ const Login = () => {
           </div>
 
           <form className="md:mx-3" onSubmit={handleSubmit}>
+            <div className="bg-yellow-200 rounded my-2 px-3 py-5">
+              <div className="flex justify-between">
+                <div>
+                  <h2 className="font-bold">Admin Test Login Detail</h2>
+                  <p className="my-1">Email: admin@me.com</p>
+                  <p>Password: 123456</p>
+                </div>
+                <div>
+                  <h2 className="font-bold">Client Test Login Detail</h2>
+                  <p className="my-1">Email: admin@me.com</p>
+                  <p>Password: 123456</p>
+                </div>
+              </div>
+            </div>
             <div className="mx-3 mb-4">
               <label className="block mb-1 font-semibold text-sm text-slate-500">
                 Email

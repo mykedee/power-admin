@@ -4,7 +4,6 @@ import { Outlet, Navigate } from "react-router-dom";
 import ClientSideBar from "../../components/NavBar/ClientSideBar";
 import TopCard from "../NavBar/TopCard";
 import { toggler } from "../../slices/globalSlice";
-import Footer from "../Footer/Footer";
 
 const ClientDashLayout = () => {
   const dispatch = useDispatch();
@@ -19,14 +18,6 @@ const ClientDashLayout = () => {
   const handleClick = () => {
     setCardOpen(!cardOpen);
   };
-
-  // const handleClick = () => {
-  // 	if (!cardOpen) {
-  // 		setCardOpen(true);
-  // 	} else {
-  // 		setCardOpen(false);
-  // 	}
-  // };
 
   return userInfo &&
     userInfo.user.role === "user" &&
@@ -49,7 +40,6 @@ const ClientDashLayout = () => {
 
         <Outlet />
       </div>
-      <Footer />
     </div>
   ) : userInfo &&
     userInfo.user.role === "user" &&

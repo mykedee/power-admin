@@ -41,7 +41,7 @@ const AddUser = () => {
 				setRole("");
 			}
 		} catch (error) {
-			toast.error(error?.data?.message || error.error);
+			toast.error(error.data.error);
 		}
 	};
 
@@ -121,7 +121,8 @@ const AddUser = () => {
 											<option>user</option>
 										</select>
 									</div>
-									{/* <!-- modal footer--> */}
+
+									{/* <!-- modal footer here--> */}
 
 									<div className="flex justify-end items-center mt-10 space-x-2 border-gray rounded-b">
 										<button

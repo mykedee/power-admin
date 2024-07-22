@@ -3,21 +3,17 @@ import {
   createRoutesFromElements,
   Route,
   RouterProvider,
+  Navigate
 } from "react-router-dom";
 import ReactDOM from "react-dom/client";
 import { Provider } from "react-redux";
 import "../src/App.css";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
-
-import App from "./App";
 import store from "./store";
 import "../src/index.css";
-import BlogScreen from "./screens/Blog/BlogScreen";
-import BlogDetailsScreen from "./screens/Blog/BlogDetailsScreen";
 import Dashboard from "./screens/AdminScreen/Dashboard";
 import ClientDashboard from "./screens/ClientScreen/ClientDashboard";
-
 import Users from "./screens/AdminScreen/UserList";
 import BlogList from "./screens/AdminScreen/BlogList";
 import ErrorPage from "./components/ErrorPage";
@@ -25,22 +21,19 @@ import Login from "./screens/Login";
 import Profile from "./screens/Profile";
 import ForgotPassword from "./screens/ForgotPassword";
 import AccountSetting from "./screens/AccountSetting";
-
+import ResetPassword from "./screens/ResetPassword";
 import Register from "./screens/Register";
 import AdminRoute from "./components/Layouts/AdminRoute";
 import VerifyEmail from "./screens/VerifyEmail";
 import ClientDashLayout from "./components/Layouts/ClientDashLayout";
-
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
-      <Route path="/" element={<Login />} errorElement={<ErrorPage />}>
-        <Route index={true} path="/login" element={<Login />} />
-        <Route path="/blogs" element={<BlogScreen />} />
-        <Route path="/blogs/:id" element={<BlogDetailsScreen />} />
-      </Route>
+      <Route exact path="/" element={<Navigate to="/login" />} />
+      <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
       <Route path="/verify" element={<VerifyEmail />} />
+      <Route path="/reset-password/:resettoken" element={<ResetPassword />} />
       <Route path="/forgot-password" element={<ForgotPassword />} />
 
       <Route element={<AdminRoute />} errorElement={<ErrorPage />}>

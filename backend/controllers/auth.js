@@ -1,88 +1,75 @@
+const ErrorResponse = require("../utils/errorResponse");
+const asyncHandler = require("../middleware/asyncHandler");
 const User = require("../models/userModel");
 const crypto = require("crypto");
 const Email = require("../utils/sendEmail");
-
 let copyRightDate = new Date().getFullYear();
 
-exports.signup = async (req, res) => {
-  try {
-    let { username, email, password, role } = req.body;
-    if (!username || !email || !password) {
-      return res.status(400).json({
-        message: "Username, Email and Password is required!",
-      });
-    }
-    let userExist = await User.findOne({ email });
-    if (userExist) {
-      return res.status(400).json({
-        message: "Email is taken",
-      });
-    }
-
-    const code = Math.floor(1000 + Math.random() * 9000).toString();
-    const emailToken = crypto.createHash("sha256").update(code).digest("hex");
-    const emailTokenExpires = Date.now() + 15 * 60 * 1000;
-    await new Email({
-      email,
-      username,
-      code,
-      copyRightDate,
-    }).sendVerificationMessage();
-
-    const user = await User.create({
-      username,
-      email,
-      password,
-      role,
-      code,
-      emailToken,
-      emailTokenExpires,
-    });
-    sendTokenResponse(user, 200, res);
-  } catch (error) {
-    res.json({
-      error: error.message,
-    });
+// signup
+// signup /api/v1/auth/signup
+// public
+exports.signup = asyncHandler(async (req, res, next) => {
+  let { username, email, password, role } = req.body;
+  if (!username || !email || !password) {
+    return next(
+      new ErrorResponse("Username, Email and Password is required!", 400)
+    );
   }
-};
-
-exports.signin = async (req, res) => {
-  try {
-    let { email, password } = req.body;
-    if (!email || !password) {
-      return res.json({
-        message: "Email and Password is required!",
-      });
-    }
-    let user = await User.findOne({ email }).select("+password");
-    if (!user) {
-      return res.status(401).json({
-        message: "Invalid Credential",
-      });
-    }
-    let isMatched = await user.comparePassword(password);
-    if (!isMatched) {
-      return res.status(400).json({
-        message: "Invalid Credentials",
-      });
-    }
-    sendTokenResponse(user, 200, res);
-  } catch (error) {
-    res.json({
-      error: error.message,
-    });
+  let userExist = await User.findOne({ email });
+  if (userExist) {
+    return next(new ErrorResponse("Email is taken", 400));
   }
-};
 
-//forgot password
-exports.forgotPassword = async (req, res) => {
-  try {
+  const code = Math.floor(1000 + Math.random() * 9000).toString();
+  const emailToken = crypto.createHash("sha256").update(code).digest("hex");
+  const emailTokenExpires = Date.now() + 15 * 60 * 1000;
+  await new Email({
+    email,
+    username,
+    code,
+    copyRightDate,
+  }).sendVerificationMessage();
+
+  const user = await User.create({
+    username,
+    email,
+    password,
+    role,
+    code,
+    emailToken,
+    emailTokenExpires,
+  });
+  sendTokenResponse(user, 200, res);
+});
+
+// signin
+// signin /api/v1/auth/signin
+// public
+exports.signin = asyncHandler(async(req, res, next) => {
+  let { email, password } = req.body;
+  if (!email || !password) {
+    return next(new ErrorResponse("Email and Password is required!", 400));
+  }
+  let user = await User.findOne({ email }).select("+password");
+  if (!user) {
+    return next(new ErrorResponse("Invalid Credentials", 401));
+  }
+  let isMatched = await user.comparePassword(password);
+  if (!isMatched) {
+    return next(new ErrorResponse("Invalid Credentials", 400));
+  }
+  sendTokenResponse(user, 200, res);
+});
+
+
+// forgot password
+// forgotPassword /api/v1/auth/forgotpassword
+// public
+exports.forgotPassword = asyncHandler(async(req, res, next) => {
     let { email } = req.body;
     let user = await User.findOne({ email });
     if (!user) {
-      return res.status(404).json({
-        message: "User with that email does not exist",
-      });
+          return next(new ErrorResponse("User with that email does not exist", 404));
     }
     // get reset token
     const resetToken = user.getResetPasswordToken();
@@ -91,7 +78,7 @@ exports.forgotPassword = async (req, res) => {
     //create reset URL
     const Url = `${req.protocol}://${req.get(
       "host"
-    )}/resetpassword/${resetToken}`;
+    )}/reset-password/${resetToken}`;
 
     try {
       let username = user.username;
@@ -115,16 +102,12 @@ exports.forgotPassword = async (req, res) => {
         message: error.message,
       });
     }
-  } catch (error) {
-    res.status(400).json({
-      error: error.message,
-    });
-  }
-};
+});
 
-//reset password
-exports.resetPassword = async (req, res) => {
-  try {
+// resetPassword
+// resetPassword /api/v1/auth/resetpassword/:token
+// public
+exports.resetPassword = asyncHandler(async(req, res) => {
     //get hash token
     const resetPasswordToken = crypto
       .createHash("sha256")
@@ -136,9 +119,7 @@ exports.resetPassword = async (req, res) => {
       resetPasswordExpire: { $gt: Date.now() },
     });
     if (!user) {
-      return res.status(400).json({
-        message: "Invalid or expired token",
-      });
+          return next(new ErrorResponse("Invalid or expired token", 400));
     }
     //set new password
     user.password = req.body.password;
@@ -146,27 +127,17 @@ exports.resetPassword = async (req, res) => {
     user.resetPasswordToken = undefined;
     await user.save();
     sendTokenResponse(user, 200, res);
-  } catch (error) {
-    res.status(400).json({
-      error: error.message,
-    });
-  }
-};
+});
 
-/**********
-// @desc: Activate User
-// @access: Private Route
-// @api: /api/v1/auth/verify
- *****/
-exports.verifyUser = async (req, res) => {
-  try {
+
+// verifyUser
+// verifyUser /api/v1/auth/verify
+// public
+exports.verifyUser = asyncHandler(async (req, res) => {
     let { code } = req.body;
 
     if (!code) {
-      return res.status(400).json({
-        success: false,
-        message: "Please enter your OTP",
-      });
+    return next(new ErrorResponse("Please enter your OTP", 400));
     }
 
     let emailToken = crypto.createHash("sha256").update(code).digest("hex");
@@ -179,96 +150,62 @@ exports.verifyUser = async (req, res) => {
     const fifteenMinutesInMillis = 15 * 60 * 1000;
 
     if (!user) {
-      return res.status(400).json({
-        success: false,
-        message: "Invalid Credentials",
-      });
+          return next(new ErrorResponse("Invalid Credentials", 400));
+
     } else if (elapsedTime > fifteenMinutesInMillis) {
-      return res.status(400).json({
-        success: false,
-        message:
-          "Verification token is expires..Please visit http://verify.com",
-      });
+    return next(new ErrorResponse("Verification token is expires..Please visit http://verify.com", 400));
     } else {
       if (user.active) {
-        return res.status(400).json({
-          success: false,
-          message: "Account already activated",
-        });
+    return next(new ErrorResponse("Account already activated", 400));
       }
     }
 
     let timeDiff = Date.now() - user.emailTokenExpires;
     const durationMinutes = 15 * 60 * 1000;
     if (timeDiff >= durationMinutes) {
-      return res.status(400).json({
-        success: false,
-        message: "Verification code is expired. Please resend",
-      });
+          return next(new ErrorResponse("Verification code is expired. Please resend", 400))
     }
 
     if (user.active) {
-      return res.status(400).json({
-        success: false,
-        message: "Account already activated",
-      });
+          return next(new ErrorResponse("Account already activated", 400));
     }
     user.emailToken = undefined;
     user.emailTokenExpires = undefined;
     user.active = true;
     await user.save({ validateBeforeSave: false });
+        return next(new ErrorResponse("Account Activated", 400));
+});
 
-    res.status(200).json({
-      success: true,
-      message: "Account Activated",
-    });
-  } catch (err) {
-    res.status(400).json({
-      success: false,
-      err: "error is here",
-    });
-  }
-};
-
-exports.updatePassword = async (req, res) => {
-  try {
+// updatePassword
+// updatePassword /api/v1/auth/forgotpassword
+// private
+exports.updatePassword = asyncHandler(async(req, res) => {
     let { currentPassword, newPassword } = req.body;
     if (!currentPassword || !newPassword) {
-      return res.status(400).json({
-        message: "Input is required!",
-      });
+          return next(new ErrorResponse("Input is required!", 400))
     }
     let user = await User.findById(req.user.id).select("+password");
 
     let isMatched = await user.comparePassword(req.body.currentPassword);
     if (!isMatched) {
-      return res.status(401).json({
-        message: "Current password is incorrect",
-      });
+          return next(new ErrorResponse("Current password is incorrect", 400))
     }
-
     user.password = req.body.newPassword;
     await user.save();
-
     sendTokenResponse(user, 200, res);
-  } catch (error) {
-    res.json({
-      error: error.message,
-    });
-  }
-};
+});
 
-exports.resendVerifyCode = async (req, res) => {
+// resendVerifyCode
+// resendVerifyCode /api/v1/auth/resend-verification
+// public
+exports.resendVerifyCode = asyncHandler(async(req, res) => {
   const code = Math.floor(1000 + Math.random() * 9000).toString();
   const emailToken = crypto.createHash("sha256").update(code).digest("hex");
   const emailTokenExpires = Date.now() + 15 * 60 * 1000;
-  try {
     const { email } = req.body;
     const user = await User.findOne({ email });
     if (user.active === true) {
-      return res
-        .status(404)
-        .json({ success: false, message: "Email is already verified" });
+    return next(new ErrorResponse("Email is already verified", 400));
     }
     let username = user.username;
 
@@ -284,16 +221,12 @@ exports.resendVerifyCode = async (req, res) => {
     }).sendVerificationMessage();
 
     await user.save({ validateBeforeSave: true });
-    res.status(201).json({
-      success: true,
-      message: "Verication code sent to your email successfully",
-    });
-  } catch (error) {
-    res.status(400).json({ message: error.message });
-  }
-};
+    return next(new ErrorResponse("Verication code sent to your email successfully", 200));
+})
 
-//logout
+// logout
+// forgotPassword /api/v1/auth/logout
+// private
 exports.logout = (req, res, next) => {
   res.cookie("token", "", {
     expires: new Date(0),

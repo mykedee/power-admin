@@ -4,7 +4,6 @@ import { Outlet, Navigate } from "react-router-dom";
 import AdminSideBar from "../../components/NavBar/AdminSideBar";
 import TopCard from "../NavBar/TopCard";
 import { toggler } from "../../slices/globalSlice";
-import Footer from "../Footer/Footer";
 
 const DashLayout = () => {
   const dispatch = useDispatch();
@@ -16,14 +15,6 @@ const DashLayout = () => {
   const toggleMode = () => {
     dispatch(toggler());
   };
-
-  // const handleClick = () => {
-  // 	if (!cardOpen) {
-  // 		setCardOpen(true);
-  // 	} else {
-  // 		setCardOpen(false);
-  // 	}
-  // };
 
   const handleClick = () => {
     setCardOpen(!cardOpen);
@@ -50,7 +41,6 @@ const DashLayout = () => {
 
         <Outlet />
       </div>
-      <Footer />
     </div>
   ) : userInfo &&
     userInfo.user.role === "admin" &&

@@ -16,7 +16,7 @@ const Register = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { userInfo } = useSelector((state) => state.auth);
-  const [signup, { isLoading, error }] = useSignupMutation();
+  const [signup, { isLoading}] = useSignupMutation();
 
   useEffect(() => {
     if (userInfo && userInfo.user.active === false) {
@@ -39,7 +39,7 @@ const Register = () => {
         navigate("/verify");
       }
     } catch (error) {
-      toast.error(error?.data?.message || error.error);
+      toast.error(error?.data?.error);
     }
   };
 
@@ -54,15 +54,15 @@ const Register = () => {
   return (
     <div className="flex w-full h-screen ">
       <div className="md:flex flex-1 items-center justify-center md:w-7/12 bg-primary-green hidden">
-        <Link to="/" className="flex justify-center my-4">
-          <img src="../images/logo-white.png" className="w-28 h-28 " />
+        <Link to="/login" className="flex justify-center my-4">
+          <img src="../images/logo-white.png" className="w-28 h-28 " alt="logo" />
         </Link>{" "}
       </div>
 
       <div className="bg-card-light md:w-5/12 lg:mx-auto w-full overflow-y-scroll">
         <div className="w-11/12 md:w-9/12 mx-auto my-20">
-          <Link to="/" className="md:hidden flex justify-center my-4">
-            <img src="../images/logo-green.png" className="w-20 h-20 " />
+          <Link to="/login" className="md:hidden flex justify-center my-4">
+            <img src="../images/logo-green.png" className="w-20 h-20 " alt="logo" />
           </Link>
           <h3 className="text-left md:mx-5 md:text-4xl text-2xl mx-3 font-bold mb-4 text-slate-700">
             Get Started

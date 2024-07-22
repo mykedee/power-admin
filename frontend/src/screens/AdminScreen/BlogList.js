@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { useNavigate, Link } from "react-router-dom";
+import React, { useState } from "react";
+
 import { AiOutlineDelete } from "react-icons/ai";
 import {
   useGetPostsQuery,
@@ -8,7 +7,6 @@ import {
 } from "../../slices/blogApiSlice";
 import CardContainer from "../../components/Common/CardContainer";
 import Loader from "../../components/Loader/Loader";
-import Message from "../../components/Errors/Message";
 import BlogEdit from "../../components/BlogSection/BlogEdit";
 import AddBlog from "../../components/BlogSection/AddBlog";
 import DialogBox from "../../components/Common/DialogBox";
@@ -18,7 +16,7 @@ import moment from "moment";
 
 const BlogList = () => {
   const [page, setPage] = useState(1);
-  const { isLoading, refetch, data, error, pages, pageSize, count } =
+  const { isLoading, refetch, data, error, pages, pageSize} =
     useGetPostsQuery(page);
   const [deletePost] = useDeletePostMutation();
   const [open, setOpen] = useState(false);
@@ -62,7 +60,7 @@ const BlogList = () => {
       {isLoading ? (
         <Loader />
       ) : error ? (
-        <Message>{error}</Message>
+        <>{error}</>
       ) : (
         <>
           <div className="relative overflow-x-auto lg:overflow-x-hidden rounded-t-lg shadow bg-white">

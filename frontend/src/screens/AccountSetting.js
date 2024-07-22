@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { toast } from "react-toastify";
 import { MdInfoOutline } from "react-icons/md";
 import DialogBox from "../components/Common/DialogBox";
@@ -7,7 +7,6 @@ import { useUpdatePasswordMutation } from "../slices/userApiSlice";
 
 const Profile = () => {
   const [open, setOpen] = useState(false);
-
   const [currentPassword, setCurrentPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmNewPassword, setConfirmNewPassword] = useState("");
@@ -45,7 +44,7 @@ const Profile = () => {
     <CardContainer>
       <div className="flex justify-between items-center my-2">
         <div className="">
-          <h3 className="text-left py-3 md:text-base font-bold text-sm text-slate-700 dark:text-white">
+          <h3 className="text-left py-3 md:text-base font-bold text-sm text-text-color dark:text-white">
             Account Setting
           </h3>
         </div>
@@ -61,9 +60,9 @@ const Profile = () => {
             </div>
             <form id="edit-modal" className="py-4">
               <div className="mb-4">
-                <label>Password</label>
+                <label className="font-bold">Password</label>
                 <input
-                  className="w-full p-3 border rounded text-slate-800"
+                  className="w-full my-2 p-3 border rounded"
                   type="password"
                   onChange={(e) => setCurrentPassword(e.target.value)}
                   placeholder="Enter current password"
@@ -82,7 +81,7 @@ const Profile = () => {
 
               <div className="mb-4">
                 <input
-                  className="w-full p-3 border rounded text-slate-800"
+                  className="w-full my-2 p-3 border rounded text-slate-800"
                   type="password"
                   onChange={(e) => setConfirmNewPassword(e.target.value)}
                   placeholder="Re-type new password"

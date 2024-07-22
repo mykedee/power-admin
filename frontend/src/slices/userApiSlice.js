@@ -11,6 +11,7 @@ import {
   UPDATE_USERPHOTO_URL,
   RESENT_VERIFICATION_URL,
   FORGOT_PASSWORD_URL,
+  RESET_PASSWORD_URL
 } from "../constants";
 
 const userApiSlice = apiSlice.injectEndpoints({
@@ -136,6 +137,15 @@ const userApiSlice = apiSlice.injectEndpoints({
       },
       invalidatesTags: ["Login"],
     }),
+    resetPassword: builder.mutation({
+      query: ({ resettoken, resetPass }) => {
+        return {
+          url: `${RESET_PASSWORD_URL}/${resettoken}`,
+          method: "PATCH",
+          body: resetPass,
+        };
+      },
+    }),
     logout: builder.mutation({
       query() {
         return {
@@ -164,4 +174,5 @@ export const {
   useVerifyUserMutation,
   useResendVerificationMutation,
   useForgotPasswordMutation,
+  useResetPasswordMutation
 } = userApiSlice;

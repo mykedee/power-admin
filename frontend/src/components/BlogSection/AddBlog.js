@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-// import { AiOutlineEdit } from "react-icons/ai";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
+import { toast } from "react-toastify";
 import { useAddPostMutation } from "../../slices/blogApiSlice";
 
 const AddBlog = (props) => {
@@ -13,9 +13,9 @@ const AddBlog = (props) => {
 		e.preventDefault();
 		try {
 			await createPost();
-			console.log(title, body);
-		} catch (error) {}
-		console.log("hello");
+		} catch (error) {
+		toast.error(error.data.error);
+		}
 	};
 
 	var toolbarOptions = [

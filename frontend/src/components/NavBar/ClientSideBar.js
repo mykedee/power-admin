@@ -1,12 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { NavLink } from "react-router-dom";
-// import { HiOutlineViewList } from "react-icons/hi";
 import { FiUsers, FiLogOut } from "react-icons/fi";
-import { GrClose, GrOrderedList } from "react-icons/gr";
+import { GrClose} from "react-icons/gr";
 import { BiUser } from "react-icons/bi";
-// import { BsBell } from "react-icons/bs";
-import { MdOutlineWorkOutline } from "react-icons/md";
 import { GiBigGear } from "react-icons/gi";
 import { logout } from "../../slices/authSlice";
 import { useDispatch } from "react-redux";
@@ -14,7 +11,6 @@ import { useLogoutMutation } from "../../slices/userApiSlice";
 
 const DashLeftBar = (props) => {
 	const dispatch = useDispatch();
-	const [activeLink, setActiveLink] = useState(true);
 	const [logoutApi] = useLogoutMutation();
 	const navigate = useNavigate();
 	const logoutHandler = async () => {

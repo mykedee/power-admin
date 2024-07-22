@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { AiOutlineEdit } from "react-icons/ai";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
-// import { useGetPostsQuery } from "../../slices/blogApiSlice";
 
 const BlogEdit = (props) => {
 	const [title, setTitle] = useState(props.title);

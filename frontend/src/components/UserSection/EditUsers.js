@@ -1,10 +1,8 @@
 import React, { useState } from "react";
 import { AiOutlineEdit } from "react-icons/ai";
-import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useUpdateUserMutation } from "../../slices/userApiSlice";
 const EditUsers = ({ user }) => {
-	// const { id } = useParams();
 	const [updateUser] = useUpdateUserMutation();
 
 	const [show, setShow] = useState(false);
@@ -13,9 +11,9 @@ const EditUsers = ({ user }) => {
 	const [role, setRole] = useState(user.role);
 	const [active, setActive] = useState(user.active);
 	const handleClose = () => {
-		setShow(false);
+		setShow(show);
 	};
-	const handleShow = () => setShow(true);
+	const handleShow = () => setShow(!show);
 
 	const handleRoleChange = (event) => {
 		setRole(event.target.value);
@@ -37,7 +35,6 @@ const EditUsers = ({ user }) => {
 				id,
 				updatedUser,
 			}).unwrap();
-			console.log(updatedUser);
 			if (res.success) {
 				setShow(false);
 				toast.success("User updated successfully");
@@ -47,8 +44,9 @@ const EditUsers = ({ user }) => {
 				setActive(user.active);
 				console.log("edit clicked");
 			}
+
 		} catch (error) {
-			toast.error(error.message || error.error);
+			toast.error(error.data.error);
 		}
 	};
 	return (
@@ -137,7 +135,7 @@ const EditUsers = ({ user }) => {
 										</select>
 									</div>
 
-									{/* <!-- modal footer--> */}
+									{/* <!-- modal footer here--> */}
 									<div className="flex justify-end items-center mt-10 space-x-3 border-gray rounded-b ">
 										<div>
 											<button

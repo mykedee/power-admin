@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import { Form, Button } from 'react-bootstrap';
 import ReactQuill from "react-quill"
 import 'react-quill/dist/quill.snow.css'
-// import FormContainer from './Forms/FormContainer';
 
 
 const Blog = () => {

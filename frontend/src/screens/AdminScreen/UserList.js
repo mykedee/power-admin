@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import Loader from "../../components/Loader/Loader";
-import Message from "../../components/Errors/Message";
 import EditUsers from "../../components/UserSection/EditUsers";
 import { AiOutlineDelete } from "react-icons/ai";
 import AddUser from "../../components/UserSection/AddUser";
@@ -18,7 +17,7 @@ import moment from'moment';
 const Users = () => {
 
 	const [page, setPage] = useState(1);
-	const { isLoading, data, refetch, error, pages, pageSize, count } =
+	const { isLoading, data, refetch, error, pages, pageSize } =
 		useGetUsersQuery(page);
 	const [deleteUser] = useDeleteUserMutation();
 	const [open, setOpen] = useState(false);
@@ -57,10 +56,10 @@ const dateFormat = (date) => {
 			{isLoading ? (
 				<Loader />
 			) : error ? (
-				<Message>{error.message}</Message>
+				<>{error.message}</>
 			) : (
 				<>
-					<div className="relative overflow-x-auto lg:overflow-x-hidden rounded-t-lg shadow-b-0 bg-white">
+			<div className="relative overflow-x-auto lg:overflow-x-hidden rounded-t-lg shadow-b-0 bg-white">
 						<table className="table-auto w-full dark:bg-slate-600 bg-white">
 							<thead className="text-left text-slate-600 dark:text-white text-sm border-b px-3 py-3">
 								<tr className="whitespace-nowrap">
@@ -113,8 +112,6 @@ const dateFormat = (date) => {
 												<EditUsers
 													className="mx-10"
 													user={user}
-													// userId={userId}
-														// setOpen={setOpen}
 												/>
 
 												<AiOutlineDelete onClick={() => setOpen(true)} />
@@ -135,14 +132,14 @@ const dateFormat = (date) => {
 							</tbody>
 						</table>		
 			</div>
-					<Paginate
-						pages={pages}
-						pageSize={pageSize}
-						page={page}
-						data={data}
-						setPage={setPage}
-					/>
-				</>
+			<Paginate
+				pages={pages}
+				pageSize={pageSize}
+				page={page}
+				data={data}
+				setPage={setPage}
+			/>
+			    </>
 			)}
 		</CardContainer>
 	);

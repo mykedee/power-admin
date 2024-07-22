@@ -6,13 +6,11 @@ import paginationSliceReducer from "./slices/paginationSlice";
 
 const store = configureStore({
 	reducer: {
-		// Add the generated RTK Query "API slice" caching reducer
 		[apiSlice.reducerPath]: apiSlice.reducer,
 		darkMode: globalSliceReducer,
 		auth: authSliceReducer,
 		pagination: paginationSliceReducer,
-		// Add any other reducers
-		// users: usersReducer,
+	
 	},
 	middleware: (getDefaultMiddleware) =>
 		getDefaultMiddleware().concat(apiSlice.middleware),
