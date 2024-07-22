@@ -9,8 +9,6 @@ import RecentTransactions from "../../components/RecentTransactions";
 const Dashboard = () => {
 	return (
     <CardContainer>
-            <section className="pt-10">
-
       <div className="flex my-5 justify-between text-center items-center gap-1 overflow-x-scroll lg:overflow-x-scroll space-x-7">
         <div className="h-52 lg:h-auto px-32 py-10 my-2 rounded bg-white transition ease-in-out hover:bg-[#fbfbfb] dark:bg-slate-700">
           <div className="flex flex-1 justify-center items-center space-y-2">
@@ -71,7 +69,6 @@ const Dashboard = () => {
           </div>
         </div>
       </div>
-      </section>
     </CardContainer>
   );
 };
