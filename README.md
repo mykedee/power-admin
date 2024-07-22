@@ -9,8 +9,8 @@ Live url: https://powerapp-ikut.onrender.com/
 <p>
   <b>▫️Admin Panel</b>
   <br>
-[![Admin Dashboard](https://olalekan-mikke.netlify.app/images/power-admin-dashboard-page1.png)
-  <br>
+  ![code8](https://user-images.githubusercontent.com/96818824/206644347-55ec30ef-bae5-4608-a6a7-9966e1c29833.png)
+    <br>
 User Update (Create | Read | Update | Delete)
   <br>
   <br>
