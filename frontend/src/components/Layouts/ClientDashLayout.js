@@ -4,6 +4,7 @@ import { Outlet, Navigate } from "react-router-dom";
 import ClientSideBar from "../../components/NavBar/ClientSideBar";
 import TopCard from "../NavBar/TopCard";
 import { toggler } from "../../slices/globalSlice";
+import Footer from "../Footer/Footer";
 
 const ClientDashLayout = () => {
   const dispatch = useDispatch();
@@ -40,6 +41,7 @@ const ClientDashLayout = () => {
 
         <Outlet />
       </div>
+      <Footer />
     </div>
   ) : userInfo &&
     userInfo.user.role === "user" &&
