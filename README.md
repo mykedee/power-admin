@@ -13,6 +13,13 @@
 
 ![power-admin-profile page](https://github.com/user-attachments/assets/2b60b3a5-0e2a-4ad3-af30-693ac894a89e)
 
+![power-admin-dashboard-light-page1](https://github.com/user-attachments/assets/4ba2fa98-43c9-415b-9025-d6bed1cd0ec9)
+
+![power-admin-light-profile page](https://github.com/user-attachments/assets/b8d7d1b1-18ec-43fa-ab98-dbd1c4795393)
+
+![power-admin-account-setting-light-page](https://github.com/user-attachments/assets/2759537a-058e-457a-9a9b-6f382991a0c1)
+
+![power-admin-dialog-box](https://github.com/user-attachments/assets/e69ee347-a5f9-454c-afa8-cb83b8bbbd71)
 
 <br>
 <br>
