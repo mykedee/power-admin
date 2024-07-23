@@ -5,7 +5,7 @@ const User = require("../models/userModel");
 // getAllUsers
 // getUsers /api/v1/auth/users
 // private/admin
-exports.getUsers = asyncHandler(async (req, res) => {
+exports.getUsers = asyncHandler(async (req, res, next) => {
     const pageSize = process.env.PAGE_SIZE;
     const page = Number(req.query.page) || 1;
     const count = await User.countDocuments();
