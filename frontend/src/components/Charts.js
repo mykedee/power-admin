@@ -73,14 +73,14 @@ export const SalesChart = () => {
   );
 };
 
+
 export const DemograpyChart = () => {
   return (
-    <ResponsiveContainer height="80%">
+     <ResponsiveContainer height={250}>
       <LineChart
         width={450}
-        height={250}
         data={CustomerDemography}
-        margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
+        margin={{ top: 5, right: 15, left: 10, bottom: 5 }}
         className="relative text-center mx-auto w-1/2"
       >
         <CartesianGrid strokeDasharray="3 3" />
@@ -91,7 +91,7 @@ export const DemograpyChart = () => {
         <Line type="monotone" dataKey="totalVisit" stroke="#8884d8" />
         <Line type="monotone" dataKey="timeSpent" stroke="#82ca9d" />
       </LineChart>
-    </ResponsiveContainer>
+     </ResponsiveContainer> 
   );
 };
 
@@ -99,16 +99,15 @@ export const DemograpyChart = () => {
 
 export const PortfolioChart = () => {
   return (
-    <ResponsiveContainer height="80%">
+    <ResponsiveContainer height={250}>
       <ComposedChart
         width={500}
-        height={400}
         data={CustomerPortfolio}
         margin={{
-          top: 20,
-          right: 80,
-          bottom: 20,
-          left: 20,
+          top: 10,
+          right: 40,
+          bottom: 10,
+          left: 10,
         }}
       >
         <CartesianGrid stroke="#f5f5f5" />
